@@ -1,5 +1,7 @@
 # Build a Fullstack App with Vanilla JS and Go
+
 # Frontend Masters
+
 ## Trainer: Maximiliano Firtman @firt (X) - firt.dev
 
 You can follow along the workshop with instructions delivered by the trainer.
@@ -18,10 +20,10 @@ go get github.com/joho/godotenv
 go get github.com/lib/pq
 ```
 
-Create the *main.go* file.
+Create the _main.go_ file.
 
 ```go
-package main 
+package main
 
 func main() {
     // Serve static files
@@ -35,11 +37,11 @@ func main() {
 }
 ```
 
-Create a test *index.html*.
+Create a test _index.html_.
 
 ### A2 - Logger
 
-Create a logger package with a *logger.go* file
+Create a logger package with a _logger.go_ file
 
 ```go
 package logger
@@ -85,7 +87,7 @@ func (l *Logger) Close() {
 }
 ```
 
-Now, change *main.go* with:
+Now, change _main.go_ with:
 
 ```go
 func main() {
@@ -116,57 +118,60 @@ func initializeLogger() *logger.Logger {
 
 ### A3 - Models
 
-Create the *models* package with the following files:
+Create the _models_ package with the following files:
 
-*genre.go*
+_genre.go_
+
 ```go
 package models
 
 type Genre struct {
-	ID   int   
-	Name string 
+	ID   int
+	Name string
 }
 ```
 
-*actor.go*
+_actor.go_
+
 ```go
 package models
 
 type Actor struct {
-	ID        int     
-	FirstName string  
-	LastName  string  
-	ImageURL  *string 
+	ID        int
+	FirstName string
+	LastName  string
+	ImageURL  *string
 }
 
 ```
 
-*movie.go*
+_movie.go_
+
 ```go
 package models
 
 type Movie struct {
-	ID          int      
-	TMDB_ID     int      
-	Title       string   
-	Tagline     *string  
-	ReleaseYear int      
-	Genres      []Genre  
-	Overview    *string  
-	Score       *float32 
-	Popularity  *float32 
-	Keywords    []string 
-	Language    *string  
-	PosterURL   *string  
-	TrailerURL  *string  
-	Casting     []Actor  
+	ID          int
+	TMDB_ID     int
+	Title       string
+	Tagline     *string
+	ReleaseYear int
+	Genres      []Genre
+	Overview    *string
+	Score       *float32
+	Popularity  *float32
+	Keywords    []string
+	Language    *string
+	PosterURL   *string
+	TrailerURL  *string
+	Casting     []Actor
 }
 
 ```
 
 ### A4 - Basic Handlers
 
-Create the *handlers* package with a *movies_handlers.go* file.
+Create the _handlers_ package with a _movies_handlers.go_ file.
 
 ```go
 package handlers
@@ -232,7 +237,7 @@ func (h *MovieHandler) GetTopMovies(w http.ResponseWriter, r *http.Request) {
 
 ```
 
-Now setup the handler in *main.go*
+Now setup the handler in _main.go_
 
 ```go
     // ...
@@ -250,7 +255,7 @@ Check instructions at [https://github.com/air-verse/air](https://github.com/air-
 go install github.com/cosmtrek/air@latest
 ```
 
-To customize it, create a *.air.toml* file with
+To customize it, create a _.air.toml_ file with
 
 ```toml
 # .air.toml
@@ -275,13 +280,13 @@ clean_on_exit = true
 
 ### B1 - Import Data
 
-Set up a Postgres database and get a connection string, then, go to *import/install.go* and insert the string there.
+Set up a Postgres database and get a connection string, then, go to _import/install.go_ and insert the string there.
 
-Get into the *import* folder, and run `go run install.go`. That should populate your database with all the data.
+Get into the _import_ folder, and run `go run install.go`. That should populate your database with all the data.
 
 ### B2 - Create the data interface
 
-Create the *data* package and the *interfaces.go* file
+Create the _data_ package and the _interfaces.go_ file
 
 ```go
 package data
@@ -299,13 +304,13 @@ type MovieStorage interface {
 
 ### B3 - Create the DB connection
 
-Create a *.env* file in the root folder and add the connection string
+Create a _.env_ file in the root folder and add the connection string
 
 ```
 DATABASE_URL=""
 ```
 
-Open *main.go* and add this in the *main* function
+Open _main.go_ and add this in the _main_ function
 
 ```go
     // Load .env file
@@ -330,7 +335,7 @@ Open *main.go* and add this in the *main* function
 
 ### B4 - Add field metadata to models
 
-Modify the models to add metadata such as with *models/movie.go*
+Modify the models to add metadata such as with _models/movie.go_
 
 ```go
 package models
@@ -355,7 +360,7 @@ type Movie struct {
 
 ### B5 - Create the Movie Repository
 
-Create *data/movie_repository.go
+Create \*data/movie_repository.go
 
 ```go
 package data
@@ -387,7 +392,7 @@ const defaultLimit = 20
 func (r *MovieRepository) GetTopMovies() ([]models.Movie, error) {
 	// Fetch movies
 	query := `
-		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score,
 		       popularity, language, poster_url, trailer_url
 		FROM movies
 		ORDER BY popularity DESC
@@ -427,7 +432,7 @@ var (
 )
 ```
 
-Back in *main.go*, initialize the repository after the database creation
+Back in _main.go_, initialize the repository after the database creation
 
 ```go
 	// Initialize repositories
@@ -459,15 +464,15 @@ func (h *MovieHandler) handleStorageError(w http.ResponseWriter, err error, cont
 }
 ```
 
-Update handler instance in *main.go* to use the new structure:
+Update handler instance in _main.go_ to use the new structure:
 
 ```go
-movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)	
+movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)
 ```
 
 ### B6 - Finish the Movie Repository
 
-The final *movie_repository.go* should look like
+The final _movie_repository.go_ should look like
 
 ```go
 package data
@@ -499,7 +504,7 @@ const defaultLimit = 20
 func (r *MovieRepository) GetTopMovies() ([]models.Movie, error) {
 	// Fetch movies
 	query := `
-		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score,
 		       popularity, language, poster_url, trailer_url
 		FROM movies
 		ORDER BY popularity DESC
@@ -511,7 +516,7 @@ func (r *MovieRepository) GetTopMovies() ([]models.Movie, error) {
 func (r *MovieRepository) GetRandomMovies() ([]models.Movie, error) {
 	// Fetch movies
 	randomQuery := `
-		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score,
 		       popularity, language, poster_url, trailer_url
 		FROM movies
 		ORDER BY random()
@@ -548,7 +553,7 @@ func (r *MovieRepository) getMovies(query string) ([]models.Movie, error) {
 func (r *MovieRepository) GetMovieByID(id int) (models.Movie, error) {
 	// Fetch movie
 	query := `
-		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score,
 		       popularity, language, poster_url, trailer_url
 		FROM movies
 		WHERE id = $1
@@ -591,14 +596,14 @@ func (r *MovieRepository) SearchMoviesByName(name string, order string, genre *i
 
 	genreFilter := ""
 	if genre != nil {
-		genreFilter = ` AND ((SELECT COUNT(*) FROM movie_genres 
-								WHERE movie_id=movies.id 
+		genreFilter = ` AND ((SELECT COUNT(*) FROM movie_genres
+								WHERE movie_id=movies.id
 								AND genre_id=` + strconv.Itoa(*genre) + `) = 1) `
 	}
 
 	// Fetch movies by name
 	query := `
-		SELECT id, tmdb_id, title, tagline, release_year, overview, score, 
+		SELECT id, tmdb_id, title, tagline, release_year, overview, score,
 		       popularity, language, poster_url, trailer_url
 		FROM movies
 		WHERE (title ILIKE $1 OR overview ILIKE $1) ` + genreFilter + `
@@ -654,7 +659,7 @@ func (r *MovieRepository) GetAllGenres() ([]models.Genre, error) {
 func (r *MovieRepository) fetchMovieRelations(m *models.Movie) error {
 	// Fetch genres
 	genreQuery := `
-		SELECT g.id, g.name 
+		SELECT g.id, g.name
 		FROM genres g
 		JOIN movie_genres mg ON g.id = mg.genre_id
 		WHERE mg.movie_id = $1
@@ -729,7 +734,7 @@ var (
 
 ### B7 - Finish the handlers
 
-The final *movies_handler.go* file should look like
+The final _movies_handler.go_ file should look like
 
 ```go
 package handlers
@@ -867,7 +872,7 @@ func NewMovieHandler(storage data.MovieStorage, log *logger.Logger) *MovieHandle
 
 ### B7 - Update the handlers
 
-In *main.go* all the handlers for the API should look like:
+In _main.go_ all the handlers for the API should look like:
 
 ```go
 	// Initialize handlers
@@ -893,51 +898,54 @@ Create `public.html`
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReelingIt - Movies</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    <link rel="stylesheet" href="/styles.css">
-    <meta name="theme-color" content="#56bce8">
-    <link rel="manifest" href="app.webmanifest">
-    <link rel="icon" href="/images/icon.png" type="image/png">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <meta name="theme-color" content="#56bce8" />
+    <link rel="manifest" href="app.webmanifest" />
+    <link rel="icon" href="/images/icon.png" type="image/png" />
     <script src="/app.js" type="module" defer></script>
-    <base href="/">
-</head>
+    <base href="/" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <h1>
-            <a href="/" class="navlink"><img src="/images/logo.png" height="35" alt="ReelingIt"></a>
-        </h1>
-        <nav>
-            <ul>
-                <li><a href="/" class="navlink">Movies</a></li>
-                <li><a href="/account/favorites" class="navlink">Favorites</a></li>
-                <li><a href="/account/watchlist" class="navlink">Watchlist</a></li>
-                <li><a href="/account/" class="navlink">My Account</a></li>
-            </ul>
-        </nav>
-        <div>
-            <form onsubmit="app.search(event)">
-                <input type="search" placeholder="Search movies">
-            </form>
-        </div>
+      <h1>
+        <a href="/" class="navlink"
+          ><img src="/images/logo.png" height="35" alt="ReelingIt"
+        /></a>
+      </h1>
+      <nav>
+        <ul>
+          <li><a href="/" class="navlink">Movies</a></li>
+          <li><a href="/account/favorites" class="navlink">Favorites</a></li>
+          <li><a href="/account/watchlist" class="navlink">Watchlist</a></li>
+          <li><a href="/account/" class="navlink">My Account</a></li>
+        </ul>
+      </nav>
+      <div>
+        <form onsubmit="app.search(event)">
+          <input type="search" placeholder="Search movies" />
+        </form>
+      </div>
     </header>
 
-    <main>
-    </main>
+    <main></main>
 
     <footer>
-        <p>© ReelingIt - FrontendMasters.com</p>
+      <p>© ReelingIt - FrontendMasters.com</p>
     </footer>
-         
-</body>
-
+  </body>
 </html>
 ```
 
@@ -946,74 +954,72 @@ Create `public.html`
 Create `app.js`
 
 ```js
-window.app = { 
-    search: (event) => {
-        event.preventDefault();
-        const keywords = document.querySelector("input[type=search]").value;
-        
-    },    
-}
+window.app = {
+  search: (event) => {
+    event.preventDefault();
+    const keywords = document.querySelector("input[type=search]").value;
+  },
+};
 
-window.addEventListener("DOMContentLoaded", () => {
-
-})
+window.addEventListener("DOMContentLoaded", () => {});
 ```
 
 ### C3 - Add a Manifest file
 
-Add the *app.webmanifest* file to the project
+Add the _app.webmanifest_ file to the project
 
 ```json
 {
-    "name": "ReelingIt",
-    "short_name": "ReelingIt",
-    "theme_color": "#43281C",
-    "display": "browser",
-    "background_color": "#56bce8",
-    "description": "The ultimate app for movie lovers: discover trailers, reviews, showtimes, and more. Experience cinema like never before!",    "icons": [
-        {
-            "src": "images/icon.png",
-            "sizes": "1024x1024",
-            "type": "image/png"
-        }
-    ]
+  "name": "ReelingIt",
+  "short_name": "ReelingIt",
+  "theme_color": "#43281C",
+  "display": "browser",
+  "background_color": "#56bce8",
+  "description": "The ultimate app for movie lovers: discover trailers, reviews, showtimes, and more. Experience cinema like never before!",
+  "icons": [
+    {
+      "src": "images/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
 }
 ```
 
 ### C4 - Create the API Service
 
-Create *services/API.js* file:
+Create _services/API.js_ file:
 
 ```js
 export const API = {
-    baseURL: '/api/',
-    getTopMovies: async () => {
-        return await API.fetch("movies/top");
-    },
-    getRandomMovies: async () => {
-        return await API.fetch("movies/random");
-    },
-    getMovieById: async (id) => {
-        return await API.fetch(`/movies/${id}`);
-    },
-    searchMovies: async (q, order, genre) => {
-        return await API.fetch(`/movies/search`, {q, order, genre})
-    },
-    getGenres: async () => {
-        return await API.fetch("genres");
-    },
-    fetch: async (service, args) => {
-        try {
-            const queryString = args ? new URLSearchParams(args).toString() : "";
-            const response = await fetch(API.baseURL + service + '?' + queryString);
-            const result = await response.json();
-            return result;
-        } catch (e) {
-            console.error(e);
-            app.showError();
-        }
+  baseURL: "/api/",
+  getTopMovies: async () => {
+    return await API.fetch("movies/top");
+  },
+  getRandomMovies: async () => {
+    return await API.fetch("movies/random");
+  },
+  getMovieById: async (id) => {
+    return await API.fetch(`/movies/${id}`);
+  },
+  searchMovies: async (q, order, genre) => {
+    return await API.fetch(`/movies/search`, { q, order, genre });
+  },
+  getGenres: async () => {
+    return await API.fetch("genres");
+  },
+  fetch: async (service, args) => {
+    try {
+      const queryString = args ? new URLSearchParams(args).toString() : "";
+      const response = await fetch(API.baseURL + service + "?" + queryString);
+      const result = await response.json();
+      return result;
+    } catch (e) {
+      console.error(e);
+      app.showError();
     }
-}
+  },
+};
 
 export default API;
 ```
@@ -1022,50 +1028,56 @@ export default API;
 
 ### D1 - HomePage template
 
-Create a template in the *index.html*
+Create a template in the _index.html_
 
 ```html
 <template id="template-home">
-    <section class="vertical-scroll" id="top-10">
-        <h2>This Week's Top 10</h2>
-        <ul>
-            <animated-loading data-elements="5"
-                data-width="150px" data-height="220px">
-            </animated-loading> 
-        </ul>
-    </section>
-    <section class="vertical-scroll" id="random">
-        <h2>Something to watch today</h2>
-        <ul>
-            <animated-loading data-elements="5"
-                data-width="150px" data-height="220px">
-            </animated-loading> 
-        </ul>
-    </section>
+  <section class="vertical-scroll" id="top-10">
+    <h2>This Week's Top 10</h2>
+    <ul>
+      <animated-loading
+        data-elements="5"
+        data-width="150px"
+        data-height="220px"
+      >
+      </animated-loading>
+    </ul>
+  </section>
+  <section class="vertical-scroll" id="random">
+    <h2>Something to watch today</h2>
+    <ul>
+      <animated-loading
+        data-elements="5"
+        data-width="150px"
+        data-height="220px"
+      >
+      </animated-loading>
+    </ul>
+  </section>
 </template>
 ```
 
 ### D2 - MovieItem Component
 
-Create the *components* folder and *MovieItem.js* file
+Create the _components_ folder and _MovieItem.js_ file
 
 ```js
 export class MovieItemComponent extends HTMLElement {
-    constructor(movie) {
-        super();
-        this.movie = movie;
-    }
+  constructor(movie) {
+    super();
+    this.movie = movie;
+  }
 
-    connectedCallback() {
-        this.innerHTML = `
+  connectedCallback() {
+    this.innerHTML = `
                 <a href="#">
                     <article>
                         <img src="${this.movie.poster_url}" alt="${this.movie.title} Poster">
                         <p>${this.movie.title} (${this.movie.release_year})</p>
                     </article>
                 </a>
-            `
-    }
+            `;
+  }
 }
 
 customElements.define("movie-item", MovieItemComponent);
@@ -1073,123 +1085,120 @@ customElements.define("movie-item", MovieItemComponent);
 
 ### D3 - HomePage Component
 
-Create components/*HomePage.js*
+Create components/_HomePage.js_
 
 ```js
 import API from "../services/API.js";
 import { MovieItemComponent } from "./MovieItem.js";
 
 export default class HomePage extends HTMLElement {
+  async render() {
+    const topMovies = await API.getTopMovies();
+    renderMoviesInList(topMovies, this.querySelector("#top-10 ul"));
 
-    async render() {
-        const topMovies = await API.getTopMovies();
-        renderMoviesInList(topMovies, this.querySelector("#top-10 ul"));
+    const randomMovies = await API.getRandomMovies();
+    renderMoviesInList(randomMovies, this.querySelector("#random ul"));
 
-        const randomMovies = await API.getRandomMovies();
-        renderMoviesInList(randomMovies, this.querySelector("#random ul"));
-
-        function renderMoviesInList(movies, ul) {
-            ul.innerHTML = "";
-            movies.forEach(movie => {
-                const li = document.createElement("li");
-                li.appendChild(new MovieItemComponent(movie));
-                ul.appendChild(li);
-            });    
-        }
+    function renderMoviesInList(movies, ul) {
+      ul.innerHTML = "";
+      movies.forEach((movie) => {
+        const li = document.createElement("li");
+        li.appendChild(new MovieItemComponent(movie));
+        ul.appendChild(li);
+      });
     }
+  }
 
-    connectedCallback() {
-        const template = document.getElementById("template-home");
-        const content = template.content.cloneNode(true);
-        this.appendChild(content);  
+  connectedCallback() {
+    const template = document.getElementById("template-home");
+    const content = template.content.cloneNode(true);
+    this.appendChild(content);
 
-        this.render();
-    }
+    this.render();
+  }
 }
 customElements.define("home-page", HomePage);
 ```
 
 ### D4 - Animated Loading
 
-Create the *components/AnimatedLoading.js* file:
+Create the _components/AnimatedLoading.js_ file:
 
 ```js
 class AnimatedLoading extends HTMLElement {
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+  }
 
-    connectedCallback() {
-        let qty = this.dataset.elements ?? 1;
-        let width = this.dataset.width ?? "100px";
-        let height = this.dataset.height ?? "10px";
-        for (let i=0; i<qty; i++) {
-            const wrapper = document.createElement('div');
-            wrapper.setAttribute('class', 'loading-wave');    
-            wrapper.style.width = width;
-            wrapper.style.height = height;        
-            wrapper.style.margin = "10px";
-            wrapper.style.display = "inline-block";
-            this.appendChild(wrapper);
-        }
+  connectedCallback() {
+    let qty = this.dataset.elements ?? 1; // data-elements
+    let width = this.dataset.width ?? "100px"; // this.dataset is an object of custom properties on the html element prefixed with data-. this particular one matches up with data-width
+    let height = this.dataset.height ?? "10px"; // data-height
+    for (let i = 0; i < qty; i++) {
+      const wrapper = document.createElement("div");
+      wrapper.setAttribute("class", "loading-wave");
+      wrapper.style.width = width;
+      wrapper.style.height = height;
+      wrapper.style.margin = "10px";
+      wrapper.style.display = "inline-block";
+      this.appendChild(wrapper);
     }
+  }
 }
 
-customElements.define('animated-loading', AnimatedLoading);
+customElements.define("animated-loading", AnimatedLoading);
 ```
 
 ### D5 - Movie Details
 
-Add a new template to *index.html*
+Add a new template to _index.html_
 
 ```html
-    <template id="template-movie-details">
-        <article id="movie">
-            <h2><animated-loading elements="2"></animated-loading></h2>
-            <h3></h3>
-            <header>
-                <img src="" alt="Poster">
-                <youtube-embed id="trailer" data-url=""></youtube-embed>
-                <section id="actions">
-                    <dl id="metadata">
-                    </dl>
-                    <button>Add to Favorites</button>
-                    <button>Add to Watchlist</button>    
-                </section>
-            </header>
-            <ul id="genres"></ul>
-            <p id="overview"></p>
-            <ul id="cast"></ul>
-        </article>
-    </template>
+<template id="template-movie-details">
+  <article id="movie">
+    <h2><animated-loading elements="2"></animated-loading></h2>
+    <h3></h3>
+    <header>
+      <img src="" alt="Poster" />
+      <youtube-embed id="trailer" data-url=""></youtube-embed>
+      <section id="actions">
+        <dl id="metadata"></dl>
+        <button>Add to Favorites</button>
+        <button>Add to Watchlist</button>
+      </section>
+    </header>
+    <ul id="genres"></ul>
+    <p id="overview"></p>
+    <ul id="cast"></ul>
+  </article>
+</template>
 ```
 
-Create the *components/MovieDetailsPage.js* file:
+Create the _components/MovieDetailsPage.js_ file:
 
 ```js
 import API from "../services/API.js";
 
 export default class MovieDetailsPage extends HTMLElement {
-    
-    movie = null;
+  movie = null;
 
-    async render(id) {
-        try {
-            this.movie = await API.getMovieById(id);
-        } catch (e) {
-            app.showError();
-            return;
-        }
-        const template = document.getElementById("template-movie-details");
-        const content = template.content.cloneNode(true);
-        this.appendChild(content);  
+  async render(id) {
+    try {
+      this.movie = await API.getMovieById(id);
+    } catch (e) {
+      app.showError();
+      return;
+    }
+    const template = document.getElementById("template-movie-details");
+    const content = template.content.cloneNode(true);
+    this.appendChild(content);
 
-        this.querySelector("h2").textContent = this.movie.title;
-        this.querySelector("h3").textContent = this.movie.tagline;
-        this.querySelector("img").src = this.movie.poster_url;
-        this.querySelector("#trailer").dataset.url = this.movie.trailer_url;
-        this.querySelector("#overview").textContent = this.movie.overview;
-        this.querySelector("#metadata").innerHTML = `                        
+    this.querySelector("h2").textContent = this.movie.title;
+    this.querySelector("h3").textContent = this.movie.tagline;
+    this.querySelector("img").src = this.movie.poster_url;
+    this.querySelector("#trailer").dataset.url = this.movie.trailer_url;
+    this.querySelector("#overview").textContent = this.movie.overview;
+    this.querySelector("#metadata").innerHTML = `                        
             <dt>Release Date</dt>
             <dd>${this.movie.release_year}</dd>                        
             <dt>Score</dt>
@@ -1198,59 +1207,58 @@ export default class MovieDetailsPage extends HTMLElement {
             <dd>${this.movie.language}</dd>                        
         `;
 
-        const ulGenres = this.querySelector("#genres");
-        ulGenres.innerHTML = "";
-        this.movie.genres.forEach(genre => {
-            const li = document.createElement("li");
-            li.textContent = genre.name;
-            ulGenres.appendChild(li);
-        });
+    const ulGenres = this.querySelector("#genres");
+    ulGenres.innerHTML = "";
+    this.movie.genres.forEach((genre) => {
+      const li = document.createElement("li");
+      li.textContent = genre.name;
+      ulGenres.appendChild(li);
+    });
 
-        const ulCast = this.querySelector("#cast");
-        ulCast.innerHTML = "";
-        this.movie.casting.forEach(actor => {
-            const li = document.createElement("li");
-            li.innerHTML = `
-                <img src="${actor.image_url ?? '/images/generic_actor.jpg'}" alt="Picture of ${actor.last_name}">
+    const ulCast = this.querySelector("#cast");
+    ulCast.innerHTML = "";
+    this.movie.casting.forEach((actor) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+                <img src="${
+                  actor.image_url ?? "/images/generic_actor.jpg"
+                }" alt="Picture of ${actor.last_name}">
                 <p>${actor.first_name} ${actor.last_name}</p>
             `;
-            ulCast.appendChild(li);
-        });
-    }
+      ulCast.appendChild(li);
+    });
+  }
 
-    connectedCallback() {
-        const id = this.params[0];
+  connectedCallback() {
+    const id = this.params[0];
 
-        this.render(id);
-
-    }
+    this.render(id);
+  }
 }
 customElements.define("movie-details-page", MovieDetailsPage);
 ```
 
 ### D6 - YouTube Embed Component
 
-Create the *components/YouTubeEmbed.js* file:
+Create the _components/YouTubeEmbed.js_ file:
 
 ```js
 export class YouTubeEmbed extends HTMLElement {
-    
-    static get observedAttributes() {
-        return ['data-url'];
-    }
+  static get observedAttributes() {
+    return ["data-url"];
+  }
 
-    attributeChangedCallback(prop, value) {
-        if (prop === 'data-url') {
-            const url = this.dataset.url;
-            const videoId = url.substring(url.indexOf("?v")+3);
-            console.log(videoId);
+  attributeChangedCallback(prop, value) {
+    if (prop === "data-url") {
+      const url = this.dataset.url;
+      const videoId = url.substring(url.indexOf("?v") + 3);
+      console.log(videoId);
 
-            this.innerHTML = `
+      this.innerHTML = `
                 <iframe width="100%" height="300" src="https://www.youtube.com/embed/${videoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             `;
-        }
     }
-
+  }
 }
 
 customElements.define("youtube-embed", YouTubeEmbed);

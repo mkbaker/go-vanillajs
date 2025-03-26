@@ -1,0 +1,27 @@
+ERROR: 2025/03/25 14:55:38 logger.go:35: Error loading .env file: open .env: no such file or directory
+ERROR: 2025/03/25 14:57:10 logger.go:35: Failed to query movies: pq: database "movies" does not exist
+ERROR: 2025/03/25 14:57:10 logger.go:35: get top movies error: pq: database "movies" does not exist
+ERROR: 2025/03/26 12:51:08 logger.go:35: Failed to query movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:51:08 logger.go:35: Failed to get movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:53:37 logger.go:35: Failed to query movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:53:37 logger.go:35: Failed to get movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:54:26 logger.go:35: Failed to query movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:54:26 logger.go:35: Failed to get movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:55:10 logger.go:35: Failed to query movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:55:10 logger.go:35: Failed to get movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:56:37 logger.go:35: Failed to query movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 12:56:37 logger.go:35: Failed to get movie by ID: pq: value "123412341234" is out of range for type integer
+ERROR: 2025/03/26 13:08:21 logger.go:35: Failed to scan movie row: sql: Scan error on column index 4, name "release_year": converting NULL to int is unsupported
+ERROR: 2025/03/26 13:08:21 logger.go:35: Failed to get movies: sql: Scan error on column index 4, name "release_year": converting NULL to int is unsupported
+ERROR: 2025/03/26 13:10:52 logger.go:35: Failed to scan movie row: sql: Scan error on column index 4, name "release_year": converting NULL to int is unsupported
+ERROR: 2025/03/26 13:10:52 logger.go:35: Failed to get movies: sql: Scan error on column index 4, name "release_year": converting NULL to int is unsupported
+ERROR: 2025/03/26 13:16:23 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:16:26 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:16:28 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:16:39 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:18:37 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:19:26 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:19:27 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:19:33 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:19:35 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 13:19:39 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
