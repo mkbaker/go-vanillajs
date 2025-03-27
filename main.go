@@ -58,7 +58,7 @@ func main() {
 	// Initialize handlers
 	movieHandler := handlers.NewMovieHandler(movieRepo, logInstance)
 	accountHandler := handlers.NewAccountHandler(accountRepo, logInstance)
-	
+
 	// Register HTTP handlers
 	http.HandleFunc("/api/movies/random", movieHandler.GetRandomMovies)
 	http.HandleFunc("/api/movies/top", movieHandler.GetTopMovies)
@@ -77,7 +77,7 @@ func main() {
 
 	http.HandleFunc("/movies", catchAllClientRoutesHandler);
 	http.HandleFunc("/movies/", catchAllClientRoutesHandler);
-	http.HandleFunc("/account", catchAllClientRoutesHandler);
+	http.HandleFunc("/account/", catchAllClientRoutesHandler);
 
 	// Handler for static files (frontend)
 	http.Handle("/", http.FileServer(http.Dir("public")))

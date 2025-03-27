@@ -25,3 +25,8 @@ ERROR: 2025/03/26 13:19:27 logger.go:35: Invalid ID format: strconv.Atoi: parsin
 ERROR: 2025/03/26 13:19:33 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
 ERROR: 2025/03/26 13:19:35 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
 ERROR: 2025/03/26 13:19:39 logger.go:35: Invalid ID format: strconv.Atoi: parsing "search/": invalid syntax
+ERROR: 2025/03/26 15:16:39 logger.go:35: Registration validation failed: missing required fields: <nil>
+ERROR: 2025/03/26 15:16:53 logger.go:35: Registration validation failed: missing required fields: <nil>
+ERROR: 2025/03/26 15:17:17 logger.go:35: User not found for email: test@test.com: <nil>
+ERROR: 2025/03/26 15:23:48 logger.go:35: Password mismatch for email: test@test.com: <nil>
+ERROR: 2025/03/26 15:23:59 logger.go:35: Password mismatch for email: test@test.com: <nil>

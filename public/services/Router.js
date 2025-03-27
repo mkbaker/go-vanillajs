@@ -28,16 +28,26 @@ export const Router = {
       if (typeof r.path === "string" && r.path === routePath) {
         // when route path is a string
         pageElement = new r.component();
-        break;
+        pageElement.loggedIn = r.loggedIn;
+        // break;
       } else if (r.path instanceof RegExp) {
         // when route path is a regular expression
         const match = r.path.exec(route);
         if (match) {
           pageElement = new r.component();
           const params = match.slice(1);
+          pageElement.loggedIn = r.loggedIn;
           pageElement.params = params;
-          break;
+          // break;
         }
+      }
+      if (pageElement) {
+        // A page was found, we checked if we have access to it.
+        if (pageElement.loggedIn && app.Store.loggedIn == false) {
+          app.Router.go("/account/login");
+          return;
+        }
+        break;
       }
     }
 
