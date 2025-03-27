@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 window.app = {
   Router,
   Store,
+  API,
   showError: (message = "There was an error.", goToHome = false) => {
     document.getElementById("alert-modal").showModal();
     document.querySelector("#alert-modal p").textContent = message;
@@ -90,5 +91,27 @@ window.app = {
     const q = urlParams.get("q");
     const order = urlParams.get("order") ?? "";
     app.Router.go(`/movies?q=${q}&order=${order}&genre=${genre}`);
+  },
+  saveToCollection: async (movie_id, collection) => {
+    if (app.Store.loggedIn) {
+      try {
+        const response = await API.saveToCollection(movie_id, collection);
+        if (response.success) {
+          switch (collection) {
+            case "favorites":
+              app.Router.go("/account/favorites");
+              break;
+            case "watchlist":
+              app.Router.go("/account/watchlist");
+          }
+        } else {
+          app.showError("We couldn't save the movie.");
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    } else {
+      app.Router.go("/account/");
+    }
   },
 };

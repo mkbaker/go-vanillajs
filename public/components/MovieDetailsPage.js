@@ -30,6 +30,18 @@ export class MovieDetailsPage extends HTMLElement {
         <dt>Popularity</dt>
         <dd>${this.movie.popularity}</dd>
     `;
+    this.querySelector("#actions #btn-favorites").addEventListener(
+      "click",
+      () => {
+        app.saveToCollection(this.movie.id, "favorites");
+      }
+    );
+    this.querySelector("#actions #btn-watchlist").addEventListener(
+      "click",
+      () => {
+        app.saveToCollection(this.movie.id, "watchlist");
+      }
+    );
 
     const ulGenres = this.querySelector("#genres");
     ulGenres.innerHTML = "";

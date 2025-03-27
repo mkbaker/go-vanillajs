@@ -30,3 +30,22 @@ ERROR: 2025/03/26 15:16:53 logger.go:35: Registration validation failed: missing
 ERROR: 2025/03/26 15:17:17 logger.go:35: User not found for email: test@test.com: <nil>
 ERROR: 2025/03/26 15:23:48 logger.go:35: Password mismatch for email: test@test.com: <nil>
 ERROR: 2025/03/26 15:23:59 logger.go:35: Password mismatch for email: test@test.com: <nil>
+ERROR: 2025/03/27 10:38:27 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:39:06 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:39:26 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:39:29 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:40:09 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:40:39 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:40:40 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:41:27 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:42:41 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:43:25 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:43:31 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:44:56 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:45:04 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:46:27 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:47:35 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:47:55 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:48:20 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:50:09 logger.go:35: Failed to decode collection request: EOF
+ERROR: 2025/03/27 10:50:30 logger.go:35: Failed to decode collection request: EOF
